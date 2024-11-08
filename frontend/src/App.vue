@@ -1,16 +1,20 @@
 <template>
-  <div>
-    <h1>Vue + Laravel API Test</h1>
-    <ApiTest />
+  <div id="app">
+    <HeaderComponent />
+    <router-view></router-view>
+    <FooterComponent />
   </div>
 </template>
 
 <script>
-import ApiTest from './components/ApiTest.vue'
+import HeaderComponent from './components/HeaderComponent.vue'
+import FooterComponent from './components/FooterComponent.vue'
 
 export default {
+  name: 'App',
   components: {
-    ApiTest
+    HeaderComponent,
+    FooterComponent
   }
 }
 </script>
