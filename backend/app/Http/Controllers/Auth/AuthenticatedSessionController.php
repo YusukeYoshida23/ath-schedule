@@ -19,10 +19,17 @@ class AuthenticatedSessionController extends Controller
         $user = Auth::user();
         $token = $user->createToken('auth-token')->plainTextToken;
 
-        return response()->json([
-            'token' => $token,
-            'user' => $user
-        ]);
+
+        // Postmanからのリクエストの場合（Accept: application/json）
+        if ($request->wantsJson()) {
+            return response()->json([
+                'token' => $token,
+                'user' => $user
+            ]);
+        }
+
+        // ブラウザからのリクエストの場合
+        return response()->noContent();
     }
 
     public function destroy(Request $request)
